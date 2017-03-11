@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class Cart : MonoBehaviour
 {
-    public float amountSavedCats = 0;
+    public float amountCatsInCart = 0;
     public float amountNeededCatsForWin = 5;
+    public GameObject theCartAnvil;
+    public GameObject[] theCats;
 
     public float speedTweaker = 2.5f;
     private bool blocked = false;
@@ -16,7 +18,7 @@ public class Cart : MonoBehaviour
     {
         if (!blocked)
         {
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(speedTweaker * amountSavedCats / 10f, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(speedTweaker * amountCatsInCart / 10f, gameObject.GetComponent<Rigidbody2D>().velocity.y);
         }
         else
         {
@@ -26,13 +28,13 @@ public class Cart : MonoBehaviour
 
     public void unload(int amount)
     {
-        amountSavedCats += amount;
-        if(amountSavedCats > amountNeededCatsForWin)
+        amountCatsInCart += amount;
+        if(amountCatsInCart > amountNeededCatsForWin)
         {
-            amountSavedCats = amountNeededCatsForWin;
+            amountCatsInCart = amountNeededCatsForWin;
         }
         updateCatsSittingInCar();
-        if(amountSavedCats == amountNeededCatsForWin)
+        if(amountCatsInCart == amountNeededCatsForWin)
         {
             youWin();
         }
@@ -40,7 +42,9 @@ public class Cart : MonoBehaviour
 
     private void updateCatsSittingInCar()
     {
-
+        for (int i = 0; i < amountCatsInCart; i++){ 
+            theCats[i].SetActive(true);
+        }
     }
 
     private void youWin()
@@ -54,7 +58,7 @@ public class Cart : MonoBehaviour
         print("Du hast die Kätzchen überfahren lassen o.O!");
         timerToLoadAgain = StartCoroutine(nextTryLoadTimer());
     }
-
+    
     public IEnumerator nextTryLoadTimer()
     {
         GameObject.FindGameObjectWithTag("master").GetComponent<Gamesmaster>().shouldSpawn = false;
@@ -70,6 +74,8 @@ public class Cart : MonoBehaviour
         if (!blocked)
         {
             blocked = true;
+            print("blocking");
+            theCartAnvil.SetActive(true);
             timeUntilFreeAgain = StartCoroutine(timer());
         }
     }
@@ -78,6 +84,7 @@ public class Cart : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         blocked = false;
+        theCartAnvil.SetActive(false);
         StopCoroutine(timeUntilFreeAgain);
     }
 
