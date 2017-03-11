@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
             if (!holdsCart)
             {
                 holdsCart = true;
-                cart.transform.SetParent(gameObject.transform, true);
+                cart.transform.SetParent(gameObject.transform);
             }
         }
         else
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             if (holdsCart)
             {
                 holdsCart = false;
-                cart.transform.SetParent(null, true);
+                cart.transform.SetParent(null);
             }
         }
     }
