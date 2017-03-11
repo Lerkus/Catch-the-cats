@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     private string carriageType = null;
     public int amount;
     private int maxCats = 3;
@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
             carriageType = toLoad.tag;
             print("loaded: " + carriageType);
             amount = 1;
+            Destroy(toLoad);
         }
         else
         {
@@ -76,25 +77,27 @@ public class Player : MonoBehaviour
                 if (carriageType == "cat" && amount < maxCats)
                 {
                     amount++;
+                    Destroy(toLoad);
                 }
                 else if (carriageType == "heavy" && amount < maxHeavy)
                 {
                     amount++;
+                    Destroy(toLoad);
                 }
             }
             else if (toLoad.tag == "heavy" && carriageType == "cat")
             {
                 amount = 0;
                 carriageType = null;
+                Destroy(toLoad);
             }
         }
         updateThingsInPlayer();
-        Destroy(toLoad);
     }
 
     public void updateThingsInPlayer()
     {
-        if(carriageType == "cat")
+        if (carriageType == "cat")
         {
             showCats();
         }
@@ -103,7 +106,8 @@ public class Player : MonoBehaviour
             clearCats();
             showAnvil();
         }
-        if(carriageType == null){
+        if (carriageType == null)
+        {
             clearCats();
             clearAnvil();
         }
@@ -144,6 +148,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void OnTriggerStay(Collider other)
+    {
+        if(carriageType != null)
+        {
+            if (other.tag == "cart")
+            {
+                unload(other.gameObject);
+            }
+        }
+    }
+
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "handle")
@@ -163,7 +178,7 @@ public class Player : MonoBehaviour
 
     private void showCats()
     {
-        for(int i = 0; i<amount; i++)
+        for (int i = 0; i < amount; i++)
         {
             print(i);
             CarringCats[i].SetActive(true);

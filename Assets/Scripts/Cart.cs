@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Cart : MonoBehaviour
 {
-    public float amountCatsInCart = 0;
-    public float amountNeededCatsForWin = 5;
+    public int amountCatsInCart = 0;
+    public int amountNeededCatsForWin = 5;
     public GameObject theCartAnvil;
     public GameObject[] theCats;
 
@@ -29,12 +29,12 @@ public class Cart : MonoBehaviour
     public void unload(int amount)
     {
         amountCatsInCart += amount;
-        if(amountCatsInCart > amountNeededCatsForWin)
+        if (amountCatsInCart > amountNeededCatsForWin)
         {
             amountCatsInCart = amountNeededCatsForWin;
         }
         updateCatsSittingInCar();
-        if(amountCatsInCart == amountNeededCatsForWin)
+        if (amountCatsInCart == amountNeededCatsForWin)
         {
             youWin();
         }
@@ -42,7 +42,13 @@ public class Cart : MonoBehaviour
 
     private void updateCatsSittingInCar()
     {
-        for (int i = 0; i < amountCatsInCart; i++){ 
+        for(int i = 0; i < theCats.Length; i++)
+        {
+            theCats[i].SetActive(false);
+        }
+
+        for (int i = 0; i < amountCatsInCart; i++)
+        {
             theCats[i].SetActive(true);
         }
     }
@@ -58,7 +64,7 @@ public class Cart : MonoBehaviour
         print("Du hast die Kätzchen überfahren lassen o.O!");
         timerToLoadAgain = StartCoroutine(nextTryLoadTimer());
     }
-    
+
     public IEnumerator nextTryLoadTimer()
     {
         GameObject.FindGameObjectWithTag("master").GetComponent<Gamesmaster>().shouldSpawn = false;
@@ -78,6 +84,11 @@ public class Cart : MonoBehaviour
             theCartAnvil.SetActive(true);
             timeUntilFreeAgain = StartCoroutine(timer());
         }
+        else
+        {
+            StopCoroutine(timeUntilFreeAgain);
+            timeUntilFreeAgain = StartCoroutine(timer());
+        }
     }
 
     public IEnumerator timer()
@@ -90,9 +101,34 @@ public class Cart : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "death")
+        if (collision.tag == "death")
         {
             youLoose();
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "cat")
+        {
+            unload(1);
+            GameObject.Destroy(collision.collider.gameObject);
+        }
+
+        if (collision.collider.tag == "heavy")
+        {
+            if(amountCatsInCart % 4 == 0)
+            {
+                amountCatsInCart -= 4;
+            }
+
+            amountCatsInCart = amountCatsInCart - amountCatsInCart % 4;
+            if (amountCatsInCart < 0)
+            {
+                amountCatsInCart = 0;
+            }
+            GameObject.Destroy(collision.collider.gameObject);
+        }
+        updateCatsSittingInCar();
     }
 }
