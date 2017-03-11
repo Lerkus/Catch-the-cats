@@ -276,6 +276,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
+--- !u!1 &320698486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 320698487}
+  - 61: {fileID: 320698488}
+  m_Layer: 9
+  m_Name: Handle
+  m_TagString: handle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &320698487
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320698486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1411506964}
+  m_RootOrder: 14
+--- !u!61 &320698488
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320698486}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3}
 --- !u!1 &378889164
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &510000504
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1510,9 +1553,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2, y: 0}
   serializedVersion: 2
-  m_Size: {x: 11.55, y: 3.19}
+  m_Size: {x: 8.55, y: 3.19}
 --- !u!212 &1411506963
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1571,6 +1614,7 @@ Transform:
   - {fileID: 1112496556}
   - {fileID: 1988865142}
   - {fileID: 510000505}
+  - {fileID: 320698487}
   m_Father: {fileID: 0}
   m_RootOrder: 15
 --- !u!114 &1411506965
@@ -1992,6 +2036,11 @@ Prefab:
       propertyPath: CarringAnvil
       value: 
       objectReference: {fileID: 1097724408}
+    - target: {fileID: 114000012848489620, guid: a4db977d42130df42b065829ee32f699,
+        type: 2}
+      propertyPath: cart
+      value: 
+      objectReference: {fileID: 1411506960}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4db977d42130df42b065829ee32f699, type: 2}
   m_IsPrefabParent: 0
