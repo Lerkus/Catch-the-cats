@@ -26,8 +26,9 @@ public class Player : MonoBehaviour
 
     private void updateCarHandler()
     {
-        if (canHoldCart && Input.GetAxis("") > 0)
+        if (canHoldCart && Input.GetAxis("Jump") > 0)
         {
+            print("try to hold the cart");
             if (!holdsCart)
             {
                 holdsCart = true;
