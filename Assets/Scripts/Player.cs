@@ -101,6 +101,10 @@ public class Player : MonoBehaviour
             clearCats();
             showAnvil();
         }
+        if(carriageType == null){
+            clearCats();
+            clearAnvil();
+        }
     }
 
     public void unload(GameObject toUnloadInto)
@@ -122,6 +126,7 @@ public class Player : MonoBehaviour
         }
         amount = 0;
         carriageType = null;
+        updateThingsInPlayer();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -156,7 +161,7 @@ public class Player : MonoBehaviour
 
     private void showCats()
     {
-        for(int i = 0; i<=amount; i++)
+        for(int i = 0; i<amount; i++)
         {
             print(i);
             CarringCats[i].SetActive(true);
