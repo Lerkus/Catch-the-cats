@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
             if (!holdsCart)
             {
                 holdsCart = true;
+                cart.GetComponent<Rigidbody2D>().isKinematic = true;
                 cart.transform.SetParent(gameObject.transform);
             }
         }
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
             if (holdsCart)
             {
                 holdsCart = false;
+                cart.GetComponent<Rigidbody2D>().isKinematic = false;
                 cart.transform.SetParent(null);
             }
         }
