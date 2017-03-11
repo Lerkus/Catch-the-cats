@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     private int maxHeavy = 1;
     public float speedTweakerNormal = 1;
     public float speedTweakerCarting = 0.5f;
+    public GameObject[] CarringCats;
+    public GameObject CarringAnvil;
 
     private bool canHoldCart = false;
     private bool holdsCart = false;
@@ -72,10 +74,13 @@ public class Player : MonoBehaviour
                 if (carriageType == "cat" && amount < maxCats)
                 {
                     amount++;
+                    showCats();
+
                 }
                 else if (carriageType == "heavy" && amount < maxHeavy)
                 {
                     amount++;
+                    clearCats();
                 }
             }
             else if (toLoad.tag == "heavy" && carriageType == "cat")
@@ -97,6 +102,7 @@ public class Player : MonoBehaviour
         else if (carriageType == "cat")
         {
             print("unloading cats");
+            clearCats();
             toUnloadInto.GetComponent<Cart>().unload(amount);
         }
         else if (carriageType == null)
@@ -134,6 +140,24 @@ public class Player : MonoBehaviour
         {
             print("Im loading some stuff.");
             load(collision.collider.gameObject);
+        }
+    }
+
+    public void showCats()
+    {
+        for(int i = 0; i<=amount; i++)
+        {
+            CarringCats[i].SetActive(true);
+        }
+    }
+
+    public void clearCats()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            print(i);
+            print(amount);
+            CarringCats[i].SetActive(false);
         }
     }
 }
