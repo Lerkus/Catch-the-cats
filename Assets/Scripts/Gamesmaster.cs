@@ -27,7 +27,6 @@ public class Gamesmaster : MonoBehaviour
         int spawnCycles = (int)Random.Range(1, 4);
         for (int i = 0; i < spawnCycles; i++)
         {
-
             if (shouldSpawn)
             {
                 Vector3 spawnPoint = spawnPoints[(int)Random.Range(0, spawnPoints.Length)].transform.position;
