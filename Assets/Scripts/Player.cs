@@ -148,13 +148,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerStay2D(Collider2D collision)
     {
-        if(carriageType != null)
+        if (carriageType != null)
         {
-            if (other.tag == "cart")
+            if (collision.tag == "cart")
             {
-                unload(other.gameObject);
+                unload(collision.gameObject);
             }
         }
     }
