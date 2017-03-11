@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - cat
+  - heavy
+  - player
+  - cart
+  - spawn
+  - master
+  - death
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - player
+  - cart
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3957833839
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Cart
+    uniqueID: 2466755877
+    locked: 0
+  - name: Player
+    uniqueID: 3192532329
+    locked: 0
