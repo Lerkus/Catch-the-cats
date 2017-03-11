@@ -34,8 +34,7 @@ public class Gamesmaster : MonoBehaviour
             {
                 spawnWindow = spawnPoints[(int)Random.Range(0, spawnPoints.Length)];
                 spawnPoint = spawnWindow.transform.position;
-                print(spawnWindow.GetComponentInChildren<Transform>().gameObject);
-                spawnWindow.transform.GetChild(0).gameObject.SetActive(true);
+                spawnWindow.GetComponent<Windows>().open();
 
                 if (Random.Range(0f, 1f) < catSpawnChance)
                 {
