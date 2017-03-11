@@ -25,11 +25,17 @@ public class Gamesmaster : MonoBehaviour
     public void spawn()
     {
         int spawnCycles = (int)Random.Range(1, 4);
+        GameObject spawnWindow;
+        Vector3 spawnPoint;
+
         for (int i = 0; i < spawnCycles; i++)
         {
             if (shouldSpawn)
             {
-                Vector3 spawnPoint = spawnPoints[(int)Random.Range(0, spawnPoints.Length)].transform.position;
+                spawnWindow = spawnPoints[(int)Random.Range(0, spawnPoints.Length)];
+                spawnPoint = spawnWindow.transform.position;
+                print(spawnWindow.GetComponentInChildren<Transform>().gameObject);
+                spawnWindow.transform.GetChild(0).gameObject.SetActive(true);
 
                 if (Random.Range(0f, 1f) < catSpawnChance)
                 {
@@ -39,7 +45,9 @@ public class Gamesmaster : MonoBehaviour
                 {
                     Instantiate(heavyPrefab, spawnPoint, new Quaternion());
                 }
+                spawnWindow.transform.GetChild(0).gameObject.SetActive(true);
             }
+            
         }
     }
 
