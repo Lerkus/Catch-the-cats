@@ -74,13 +74,10 @@ public class Player : MonoBehaviour
                 if (carriageType == "cat" && amount < maxCats)
                 {
                     amount++;
-                    showCats();
-
                 }
                 else if (carriageType == "heavy" && amount < maxHeavy)
                 {
                     amount++;
-                    clearCats();
                 }
             }
             else if (toLoad.tag == "heavy" && carriageType == "cat")
@@ -89,7 +86,21 @@ public class Player : MonoBehaviour
                 carriageType = null;
             }
         }
+        updateThingsInPlayer();
         Destroy(toLoad);
+    }
+
+    public void updateThingsInPlayer()
+    {
+        if(carriageType == "cat")
+        {
+            showCats();
+        }
+        if (carriageType == "heavy")
+        {
+            clearCats();
+            showAnvil();
+        }
     }
 
     public void unload(GameObject toUnloadInto)
@@ -143,21 +154,30 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void showCats()
+    private void showCats()
     {
         for(int i = 0; i<=amount; i++)
         {
+            print(i);
             CarringCats[i].SetActive(true);
         }
     }
 
-    public void clearCats()
+    private void clearCats()
     {
         for (int i = 0; i < 3; i++)
         {
-            print(i);
-            print(amount);
             CarringCats[i].SetActive(false);
         }
+    }
+
+    private void showAnvil()
+    {
+        CarringAnvil.SetActive(true);
+    }
+
+    private void clearAnvil()
+    {
+        CarringAnvil.SetActive(false);
     }
 }
