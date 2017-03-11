@@ -42,7 +42,7 @@ public class Cart : MonoBehaviour
 
     private void updateCatsSittingInCar()
     {
-        for(int i = 0; i < theCats.Length; i++)
+        for (int i = 0; i < theCats.Length; i++)
         {
             theCats[i].SetActive(false);
         }
@@ -70,8 +70,16 @@ public class Cart : MonoBehaviour
         GameObject.FindGameObjectWithTag("master").GetComponent<Gamesmaster>().shouldSpawn = false;
         yield return new WaitForSeconds(2);
 
-        StopCoroutine(timeUntilFreeAgain);
-        StopCoroutine(timerToLoadAgain);
+        if (timeUntilFreeAgain != null)
+        {
+            StopCoroutine(timeUntilFreeAgain);
+        }
+
+        if (timerToLoadAgain != null)
+        {
+            StopCoroutine(timerToLoadAgain);
+        }
+
         SceneManager.LoadScene("main");
     }
 
@@ -117,7 +125,7 @@ public class Cart : MonoBehaviour
 
         if (collision.collider.tag == "heavy")
         {
-            if(amountCatsInCart % 4 == 0)
+            if (amountCatsInCart % 4 == 0)
             {
                 amountCatsInCart -= 4;
             }
