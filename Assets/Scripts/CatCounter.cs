@@ -3,13 +3,9 @@ using System.Collections;
 
 public class CatCounter : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public Cart data;
 	
-	}
-	
-	// Update is called once per frame
 	void Update () {
-	
+        gameObject.GetComponent<GUIText>().text = data.amountCatsInCart + "/" + data.amountNeededCatsForWin;
 	}
 }

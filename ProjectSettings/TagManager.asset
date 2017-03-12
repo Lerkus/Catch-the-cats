@@ -12,6 +12,7 @@ TagManager:
   - master
   - death
   - handle
+  - data
   layers:
   - Default
   - TransparentFX
