@@ -17,6 +17,10 @@ public class Cart : MonoBehaviour
     public GameObject winScreen;
     public GameObject looseScreen;
 
+    public AudioClip cats;
+    public AudioClip crash;
+    public AudioSource mySource;
+
 
     public void FixedUpdate()
     {
@@ -66,6 +70,10 @@ public class Cart : MonoBehaviour
 
     private void youLoose()
     {
+        mySource = GetComponent<AudioSource>();
+        mySource.PlayOneShot(crash, 1);
+        mySource.PlayOneShot(cats, 1);
+   
         Time.timeScale = 0;
         looseScreen.SetActive(true);
         timerToLoadAgain = StartCoroutine(mainMenueLoadTimer());
