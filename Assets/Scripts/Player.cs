@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private int maxHeavy = 1;
     public float speedTweakerNormal = 1;
     public float speedTweakerCarting = 0.5f;
+
     public GameObject[] CarringCats;
     public GameObject CarringAnvil;
 
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     {
         updateCarHandler();
         movePlayer();
+        throwAnvil();
     }
 
     private void updateCarHandler()
@@ -201,5 +203,35 @@ public class Player : MonoBehaviour
     private void clearAnvil()
     {
         CarringAnvil.SetActive(false);
+    }
+
+    private void throwAnvil()
+    {
+        if (Input.GetAxisRaw("Vertical") != 0 && carriageType == "heavy")
+        {
+            GameObject anvilThrown = Instantiate(CarringAnvil);
+            anvilThrown.AddComponent<Rigidbody2D>();
+            Vector2 throwDirection;
+
+            if (Random.value < 0.5f)
+            {
+                throwDirection = new Vector2(-1, 1);
+            }
+            else
+            {
+                throwDirection = new Vector2(1, 1);
+            }
+            //anvilThrown.tag = "default";
+            anvilThrown.layer = 10;
+            anvilThrown.SetActive(true);
+            anvilThrown.GetComponent<Rigidbody2D>().velocity = throwDirection * 2;
+
+            anvilThrown.transform.position = CarringAnvil.transform.position;
+            anvilThrown.transform.localScale = CarringAnvil.transform.lossyScale;
+
+            carriageType = null;
+            amount = 0;
+            clearAnvil();
+        }
     }
 }
