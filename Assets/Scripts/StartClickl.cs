@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class StartClickl : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public GameObject catLoading;
+    public GameObject butt;
+
+
+	public void click()
+    {
+        catLoading.SetActive(true);
+        butt.SetActive(true);
+        SceneManager.LoadScene("main");
+        gameObject.SetActive(false);
+    }
 }
