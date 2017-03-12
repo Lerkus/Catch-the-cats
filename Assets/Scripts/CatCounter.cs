@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class CatCounter : MonoBehaviour {
+public class CatCounter : MonoBehaviour
+{
 
     public Cart data;
-    public GUIText display;
-	
-	void Update () {
+    public Text display;
+
+    void Update()
+    {
         display.text = data.amountCatsInCart + "/" + data.amountNeededCatsForWin;
-	}
+    }
 }
+

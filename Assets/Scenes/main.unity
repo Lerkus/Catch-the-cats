@@ -2889,7 +2889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 1411506965}
-  display: {fileID: 0}
+  display: {fileID: 1085570950}
 --- !u!114 &1085570950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2922,7 +2922,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0/20
+  m_Text: 0/24
 --- !u!222 &1085570951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4234,6 +4234,9 @@ MonoBehaviour:
   speedTweaker: 2
   winScreen: {fileID: 110184710}
   looseScreen: {fileID: 1637059881}
+  cats: {fileID: 0}
+  crash: {fileID: 0}
+  mySource: {fileID: 0}
 --- !u!1 &1430682562
 GameObject:
   m_ObjectHideFlags: 0
