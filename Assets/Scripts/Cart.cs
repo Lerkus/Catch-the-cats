@@ -14,6 +14,10 @@ public class Cart : MonoBehaviour
     private Coroutine timeUntilFreeAgain;
     private Coroutine timerToLoadAgain;
 
+    public GameObject winScreen;
+    public GameObject looseScreen;
+
+
     public void FixedUpdate()
     {
         if (!blocked)
@@ -55,20 +59,22 @@ public class Cart : MonoBehaviour
 
     private void youWin()
     {
-        print("Du hast die Kätzchen gerettet :3");
-        timerToLoadAgain = StartCoroutine(nextTryLoadTimer());
+        Time.timeScale = 0;
+        winScreen.SetActive(true);
+        timerToLoadAgain = StartCoroutine(mainMenueLoadTimer());
     }
 
     private void youLoose()
     {
-        print("Du hast die Kätzchen überfahren lassen o.O!");
-        timerToLoadAgain = StartCoroutine(nextTryLoadTimer());
+        Time.timeScale = 0;
+        looseScreen.SetActive(true);
+        timerToLoadAgain = StartCoroutine(mainMenueLoadTimer());
     }
 
-    public IEnumerator nextTryLoadTimer()
+    public IEnumerator mainMenueLoadTimer()
     {
         GameObject.FindGameObjectWithTag("master").GetComponent<Gamesmaster>().shouldSpawn = false;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2);
 
         if (timeUntilFreeAgain != null)
         {
@@ -80,7 +86,7 @@ public class Cart : MonoBehaviour
             StopCoroutine(timerToLoadAgain);
         }
 
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("main menue");
     }
 
     public void block()
