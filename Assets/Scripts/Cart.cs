@@ -82,7 +82,7 @@ public class Cart : MonoBehaviour
     public IEnumerator mainMenueLoadTimer()
     {
         GameObject.FindGameObjectWithTag("master").GetComponent<Gamesmaster>().shouldSpawn = false;
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(4);
 
         if (timeUntilFreeAgain != null)
         {
