@@ -4,8 +4,9 @@ using System.Collections;
 public class CatCounter : MonoBehaviour {
 
     public Cart data;
+    public GUIText display;
 	
 	void Update () {
-        gameObject.GetComponent<GUIText>().text = data.amountCatsInCart + "/" + data.amountNeededCatsForWin;
+        display.text = data.amountCatsInCart + "/" + data.amountNeededCatsForWin;
 	}
 }
