@@ -10,16 +10,24 @@ public class Gamesmaster : MonoBehaviour
     public float timeBetweenSpawnes = 5;
     public bool shouldSpawn = true;
 
+    public AudioClip openSound;
+    public AudioSource soundSource;
+    
+
     public GameObject catPrefab;
     public GameObject heavyPrefab;
 
     public float catSpawnChance = 0.25f;
+    
 
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("spawn");
         print(spawnPoints.Length);
         waveTimer = StartCoroutine(waveWaiter());
+        soundSource = GetComponent<AudioSource>();
+        soundSource.volume = 0.25f;
+        soundSource.pitch = (float)1.5;
     }
 
     public void spawn()
@@ -27,7 +35,7 @@ public class Gamesmaster : MonoBehaviour
         int spawnCycles = (int)Random.Range(1, 4);
         GameObject spawnWindow;
         Vector3 spawnPoint;
-
+        soundSource.PlayOneShot(openSound, 1);
         for (int i = 0; i < spawnCycles; i++)
         {
             if (shouldSpawn)
