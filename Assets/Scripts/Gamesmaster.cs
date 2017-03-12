@@ -14,6 +14,7 @@ public class Gamesmaster : MonoBehaviour
     public AudioClip openSound;
     public AudioClip[] cats;
     public AudioSource soundSource;
+    public AudioSource soundSourceWindow;
 
     private float lowPitchRange = .90F;
     private float highPitchRange = 1.5F;
@@ -32,6 +33,7 @@ public class Gamesmaster : MonoBehaviour
         print(spawnPoints.Length);
         waveTimer = StartCoroutine(waveWaiter());
         soundSource = GetComponent<AudioSource>();
+        soundSourceWindow = soundSource;
         soundSource.volume = 0.7f;
         
     }
@@ -42,8 +44,8 @@ public class Gamesmaster : MonoBehaviour
         int randomNumber;
         GameObject spawnWindow;
         Vector3 spawnPoint;
-        
-        soundSource.PlayOneShot(openSound, 1);
+        soundSourceWindow.pitch = (float)1.5;
+        soundSourceWindow.PlayOneShot(openSound, 1);
         for (int i = 0; i < spawnCycles; i++)
         {
             if (shouldSpawn)
@@ -53,7 +55,7 @@ public class Gamesmaster : MonoBehaviour
                 spawnWindow.GetComponent<Windows>().open();
                 randomNumber = (int)Random.Range(0,3);
 
-                soundSource.pitch = (float)1;
+               
                 soundSource.pitch = Random.Range(lowPitchRange, highPitchRange);
                 mySound = cats[randomNumber];
 
