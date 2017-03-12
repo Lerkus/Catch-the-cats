@@ -35,7 +35,7 @@ public class Gamesmaster : MonoBehaviour
         soundSource = GetComponent<AudioSource>();
         soundSourceWindow = soundSource;
         soundSource.volume = 0.7f;
-        
+        Time.timeScale = 1;
     }
 
     public void spawn()

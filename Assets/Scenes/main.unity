@@ -4267,7 +4267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountCatsInCart: 0
-  amountNeededCatsForWin: 24
+  amountNeededCatsForWin: 16
   theCartAnvil: {fileID: 510000503}
   theCats:
   - {fileID: 1988865140}
